@@ -7,22 +7,28 @@ import ProfilePage from "./components/ProfilePage";
 
 import "./App.css";
 
+const context = React.createContext({});
+const { Consumer, Provider } = context;
+
 function App() {
     return (
-        <div className="App App-header">
-            <Router>
-                <Layout>
-                    <Switch>
-                        <Route exact path="/">
-                            <LandingPage />
-                        </Route>
-                        <Route path="/profile">
-                            <ProfilePage />
-                        </Route>
-                    </Switch>
-                </Layout>
-            </Router>
-        </div>
+        <Provider value={"test"}>
+            <div className="App App-header">
+                <Router>
+                    <Layout>
+                        <Switch>
+                            <Route exact path="/">
+                                <LandingPage />
+                                <Consumer>{(value) => <p>{value}</p>}</Consumer>
+                            </Route>
+                            <Route path="/profile">
+                                <ProfilePage />
+                            </Route>
+                        </Switch>
+                    </Layout>
+                </Router>
+            </div>
+        </Provider>
     );
 }
 
